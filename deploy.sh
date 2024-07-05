@@ -5,7 +5,7 @@ set -e
 npm run build:main
 
 # 进入生成的文件夹
-cd dist
+cd main/dist
 
 git init
 git add -A
