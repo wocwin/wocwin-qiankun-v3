@@ -18,69 +18,69 @@
 
 <script>
 export default {
-  data() {
-    const equalToPassword = (rule, value, callback) => {
-      if (this.user.newPassword !== value) {
-        callback(new Error('两次输入的密码不一致'))
-      } else {
-        callback()
-      }
-    }
-    return {
-      test: '1test',
-      user: {
-        oldPassword: undefined,
-        newPassword: undefined,
-        confirmPassword: undefined
-      },
-      // 表单校验
-      rules: {
-        oldPassword: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
-        newPassword: [
-          { required: true, message: '新密码不能为空', trigger: 'blur' },
-          { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
-        ],
-        confirmPassword: [
-          { required: true, message: '确认密码不能为空', trigger: 'blur' },
-          { required: true, validator: equalToPassword, trigger: 'blur' }
-        ]
-      }
-    }
-  },
-  methods: {
-    submit() {
-      this.$refs['form'].validate(async (valid) => {
-        if (valid) {
-          const params = {
-            oldPassword: this.user.oldPassword,
-            newPassword: this.user.newPassword
-          }
-          const res = await this.$api.updateUserPwd(params)
-          if (res.success) {
-            this.$message.success('修改密码成功')
-            this.$store.dispatch('FedLogOut').then(() => {
-              if (!window.__POWERED_BY_QIANKUN__) {
-                location.reload()
-              } else {
-                window.location.href = process.env.NODE_ENV === 'production' ? '/wocwin-qiankun-v3/':'/'
-              }
-            })
-          } else {
-            this.$message.error(response.msg)
-          }
-        }
-      })
-    },
-    initData() {
-      this.user = {
-        oldPassword: undefined,
-        newPassword: undefined,
-        confirmPassword: undefined
-      }
-    },
-    close() {
-      this.$emit('close')
-    }
-  }
+	data() {
+		const equalToPassword = (rule, value, callback) => {
+			if (this.user.newPassword !== value) {
+				callback(new Error('两次输入的密码不一致'))
+			} else {
+				callback()
+			}
+		}
+		return {
+			test: '1test',
+			user: {
+				oldPassword: undefined,
+				newPassword: undefined,
+				confirmPassword: undefined
+			},
+			// 表单校验
+			rules: {
+				oldPassword: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
+				newPassword: [
+					{ required: true, message: '新密码不能为空', trigger: 'blur' },
+					{ min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
+				],
+				confirmPassword: [
+					{ required: true, message: '确认密码不能为空', trigger: 'blur' },
+					{ required: true, validator: equalToPassword, trigger: 'blur' }
+				]
+			}
+		}
+	},
+	methods: {
+		submit() {
+			this.$refs['form'].validate(async valid => {
+				if (valid) {
+					const params = {
+						oldPassword: this.user.oldPassword,
+						newPassword: this.user.newPassword
+					}
+					const res = await this.$api.updateUserPwd(params)
+					if (res.success) {
+						this.$message.success('修改密码成功')
+						this.$store.dispatch('FedLogOut').then(() => {
+							if (!window.__POWERED_BY_QIANKUN__) {
+								location.reload()
+							} else {
+								window.location.href = window.localStorage.getItem('mainJumpPublicPath')
+							}
+						})
+					} else {
+						this.$message.error(response.msg)
+					}
+				}
+			})
+		},
+		initData() {
+			this.user = {
+				oldPassword: undefined,
+				newPassword: undefined,
+				confirmPassword: undefined
+			}
+		},
+		close() {
+			this.$emit('close')
+		}
+	}
 }
 </script>

@@ -14,6 +14,7 @@ const permission = {
 		activeMenus: [],
 		ssoMenu: [],
 		parentPath: '',
+		publicPath: '',
 		menuId: Cookies.get('mainMenuId')
 	},
 	mutations: {
@@ -26,6 +27,9 @@ const permission = {
 		},
 		SET_PARENT_PATH: (state, path) => {
 			state.parentPath = path
+		},
+		SET_PUBLIC_PATH: (state, path) => {
+			state.publicPath = path
 		},
 		SET_MENU_ID: (state, menuId) => {
 			state.menuId = menuId

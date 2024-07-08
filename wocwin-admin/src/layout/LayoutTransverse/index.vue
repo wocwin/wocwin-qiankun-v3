@@ -55,9 +55,7 @@ const handleClickMenu = (subItem: Menu.MenuOptions) => {
 };
 const goIndex = () => {
   window.location.href = qiankunWindow.__POWERED_BY_QIANKUN__
-    ? import.meta.env.VITE_APP_ENV === "production"
-      ? "/wocwin-qiankun-v3/"
-      : "/"
+    ? window.localStorage.getItem("mainJumpPublicPath") || "/"
     : "/wocwin-admin/";
 };
 </script>

@@ -51,7 +51,7 @@ const apps: any = microApps.map(item => {
     ...item
   };
 });
-// console.log('app333', apps)
+// console.log("app333", apps)
 registerMicroApps(apps);
 start({
   prefetch: false // 取消预加载

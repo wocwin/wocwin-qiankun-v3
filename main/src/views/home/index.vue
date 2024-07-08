@@ -37,6 +37,7 @@
 import { useAuthStore } from "@/store/modules/auth";
 import { useTabsStore } from "@/store/modules/tabs";
 import { useKeepAliveStore } from "@/store/modules/keepAlive";
+import actions from "@/utils/actions";
 import GithubCorner from "./components/GithubCorner.vue";
 import ToolBarRight from "@/layout/components/Header/ToolBarRight.vue";
 const tabStore = useTabsStore();
@@ -59,6 +60,8 @@ const routeHandle = (curRoute: { meta: { disabled: any }; children: { path: any 
       query: {}
     });
   } else {
+    // 设置与子应用通信的值
+    actions.setGlobalState({ publicPath: import.meta.env.VITE_APP_ENV === "production" ? "/wocwin-qiankun-v3/" : "/" });
     // console.log("route.path-----", `/${curRoute.path.split("/")[2]}/`);
     // return;
     window.history.pushState({}, "", `/${curRoute.path.split("/")[2]}/`);

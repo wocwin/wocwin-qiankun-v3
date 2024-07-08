@@ -16,6 +16,7 @@ const getters = {
 	permission_sysMenu: state => state.permission.sysMenu,
 	permission_ssoMenu: state => state.permission.ssoMenu,
 	menuId: state => state.permission.menuId,
+	publicPath: state => state.permission.publicPath,
 	user_ssoControl: state => state.user.ssoControl,
 	userId: state => state.userId,
 	activeMenus: state => state.permission.activeMenus

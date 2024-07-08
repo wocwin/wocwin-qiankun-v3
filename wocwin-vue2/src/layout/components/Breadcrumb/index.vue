@@ -32,6 +32,11 @@ export default {
 	created() {
 		this.getBreadcrumb()
 	},
+	computed: {
+		publicPath() {
+			return this.$store.getters.publicPath
+		}
+	},
 	methods: {
 		getBreadcrumb() {
 			// only show routes with meta.title
@@ -73,7 +78,7 @@ export default {
 			if (!window.__POWERED_BY_QIANKUN__) {
 				this.$router.push({ path: '/' })
 			} else {
-				window.location.href = process.env.NODE_ENV === 'production' ? '/wocwin-qiankun-v3/':'/'
+				window.location.href = this.publicPath
 			}
 		}
 	}

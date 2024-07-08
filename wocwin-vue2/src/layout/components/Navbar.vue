@@ -55,7 +55,6 @@ export default {
 	},
 	computed: {
 		...mapGetters(['sidebar', 'avatar', 'device', 'nickName']),
-
 		setting: {
 			get() {
 				return this.$store.state.settings.showSettings
@@ -67,6 +66,9 @@ export default {
 				})
 			}
 		}
+	},
+	mounted() {
+		// console.log('publicPath---666', window.localStorage.getItem('mainJumpPublicPath'))
 	},
 	methods: {
 		toggleSideBar() {
@@ -83,7 +85,7 @@ export default {
 				type: 'warning'
 			}).then(() => {
 				this.$store.dispatch('FedLogOut').then(() => {
-					window.location.href = window.__POWERED_BY_QIANKUN__ ? process.env.NODE_ENV === 'production' ? '/wocwin-qiankun-v3/':'/' : '/wocwin-vue2/'
+					window.location.href = window.__POWERED_BY_QIANKUN__ ? window.localStorage.getItem('mainJumpPublicPath') : '/wocwin-vue2/'
 				})
 			})
 		}

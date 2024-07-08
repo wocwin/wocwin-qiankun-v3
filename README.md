@@ -48,7 +48,7 @@ git clone https://gitee.com/wocwin/wocwin-qiankun-v3.git
 
 ```js
 // 1、运行完 npm run start
-// 2、打开http://localhost:8100/ 进入主应用
+// 2、打开http://localhost:3400/ 进入主应用
 // 3、逐个进入子应用（点击子应用左侧菜单栏logo可以回到主应用）
 // 4、主应用的系统管理是所有应用的公共模板（用户、角色、菜单、部门、微前端、字典等）
 ```

@@ -7,7 +7,6 @@ const microApps = [
   {
     name: "wocwin-admin",
     entry: import.meta.env.VITE_APP_SUB_VUE3,
-    // entry: '//localhost:3300/wocwin-admin/',
     activeRule: "/wocwin-admin/"
   }
 ];
